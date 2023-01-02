@@ -20,7 +20,7 @@ const Link = ({ page, selectedPage, setSelectedPage }) => {
 
 const Navbar = ({ selectedPage, setSelectedPage }) => {
   const [isMenuToggled, setIsMenuToggle] = useState(false);
-  const isAboveSmallScreens = useMediaQuery('(mix-width: 768px)');
+  const isAboveSmallScreens = useMediaQuery('(min-width: 768px)');
   return (
     <nav className={`z-40 w-full fixed top-0 py-6`}>
       <div className="flex items-center justify-between mx-auto w-5/6">
