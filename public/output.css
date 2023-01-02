@@ -737,3 +737,9 @@ body,
   --tw-text-opacity: 1;
   color: rgb(253 204 73 / var(--tw-text-opacity));
 }
+
+@media (min-width: 1060px){
+  .md\:h-full{
+    height: 100%;
+  }
+}
