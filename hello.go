@@ -3,11 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	isTrue := true
+	role := "admin"
 
-	if isTrue {
-		fmt.Println("isTrue is true")
-	} else {
-		fmt.Println("isTrue is false")
+	switch role {
+	case "admin":
+		fmt.Println("You are an admin")
+	case "user":
+		fmt.Println("You are a user")
+	default:
+		fmt.Println("You are a guest")
 	}
-}	
+}
