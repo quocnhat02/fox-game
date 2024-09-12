@@ -3,9 +3,13 @@ package main
 import "fmt"
 
 func main() {
-	arr := [3]int{1, 2, 3}
+	fruits := map[string]int{
+		"apple":  2,
+		"banana": 3,
+		"cherry": 1,
+	}
 
-	for i := 0; i < len(arr); i++ {
-		fmt.Println(arr[i])
+	for key, value := range fruits {
+		fmt.Printf("%s: %d\n", key, value)
 	}
 }
