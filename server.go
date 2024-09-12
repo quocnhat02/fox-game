@@ -5,11 +5,17 @@ import (
 	"net/http"
 )
 
-func helloWorld(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, World!")
+type MessageHandler struct {
+	Message string
+}
+
+func (m *MessageHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, m.Message)
 }
 
 func main() {
-	http.HandleFunc("/", helloWorld)
+	messageHandler := &MessageHandler{Message: "Hello, World! I am a server."}
+
+	http.Handle("/", messageHandler)
 	http.ListenAndServe(":8080", nil)
 }
