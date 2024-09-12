@@ -3,13 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	fruits := map[string]int{
-		"apple":  2,
-		"banana": 3,
-		"cherry": 1,
-	}
+	isTrue := true
 
-	for key, value := range fruits {
-		fmt.Printf("%s: %d\n", key, value)
+	if isTrue {
+		fmt.Println("isTrue is true")
+	} else {
+		fmt.Println("isTrue is false")
 	}
-}
+}	
