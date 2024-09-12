@@ -14,8 +14,8 @@ func bookHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK) 
 		w.Write([]byte(fmt.Sprintf("Book retrieved. Genre: %s, Title: %s", genre, title)))
 	case "POST":
-		genre := r.URL.Query().Get("genre")
-		title := r.URL.Query().Get("title")
+		genre := r.Body.Genre
+		title := r.Body.Title
 		if genre == "" || title == "" {
 			http.Error(w, "Genre and title are required", http.StatusBadRequest)
 			return
