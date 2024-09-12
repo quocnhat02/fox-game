@@ -2,10 +2,14 @@ package main
 
 import "fmt"
 
-func printMessage(name string) {
-	fmt.Println("Hello, World!", name)
+func printMessage(done chan bool) {
+	fmt.Println("Hello, World!")
+	done <- true
 }
 
 func main() {
-	printMessage("John")
+	done := make(chan bool)
+	go printMessage(done)
+	<-done
+	fmt.Println("Done")
 }
