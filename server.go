@@ -7,7 +7,17 @@ import (
 )
 
 func bookHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Here are the books")
+	switch r.Method {
+	case "GET":
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("Book retrieved."))
+	case "POST":
+		w.WriteHeader(http.StatusCreated)
+		w.Write([]byte("Book created."))
+	default:
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		w.Write([]byte("Method not allowed"))
+	}
 }
 
 func main() {
