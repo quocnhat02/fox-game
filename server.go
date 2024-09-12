@@ -3,19 +3,16 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
-type MessageHandler struct {
-	Message string
-}
-
-func (m *MessageHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, m.Message)
-}
-
 func main() {
-	messageHandler := &MessageHandler{Message: "Hello, World! I am a server."}
-
-	http.Handle("/", messageHandler)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello, World! I am a server.")
+	})
+	fmt.Println("Server is running on port 8080")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
 }
