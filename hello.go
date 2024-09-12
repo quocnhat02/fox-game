@@ -2,15 +2,10 @@ package main
 
 import "fmt"
 
-func main() {
-	role := "admin"
+func printMessage() {
+	fmt.Println("Hello, World!")
+}
 
-	switch role {
-	case "admin":
-		fmt.Println("You are an admin")
-	case "user":
-		fmt.Println("You are a user")
-	default:
-		fmt.Println("You are a guest")
-	}
+func main() {
+	printMessage()
 }
