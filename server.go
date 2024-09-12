@@ -9,14 +9,21 @@ import (
 func bookHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Book retrieved."))
+		genre := r.URL.Query().Get("genre")
+		title := r.URL.Query().Get("title")
+		w.WriteHeader(http.StatusOK) 
+		w.Write([]byte(fmt.Sprintf("Book retrieved. Genre: %s, Title: %s", genre, title)))
 	case "POST":
+		genre := r.URL.Query().Get("genre")
+		title := r.URL.Query().Get("title")
+		if genre == "" || title == "" {
+			http.Error(w, "Genre and title are required", http.StatusBadRequest)
+			return
+		}
 		w.WriteHeader(http.StatusCreated)
-		w.Write([]byte("Book created."))
+		w.Write([]byte(fmt.Sprintf("Book created. Genre: %s, Title: %s", genre, title)))
 	default:
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		w.Write([]byte("Method not allowed"))
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 }
 
